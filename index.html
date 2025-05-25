@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SharpSpeak – Improve Your English Speaking and Pronouciation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes highlightGlow {
+      0% {
+        box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+      }
+
+      50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+      }
+
+      100% {
+        box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+      }
+    }
+
+    .highlight-effect {
+      animation: highlightGlow 2s ease-in-out;
+      border: 2px solid rgb(51, 255, 0);
+      border-radius: 1rem;
+    }
+  </style>
+
+</head>
+
+<body class="bg-white text-gray-800">
+
+  <!-- Navigation -->
+  <header class="w-full px-6 py-4 shadow-md fixed top-0 left-0 bg-white z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-600">SharpSpeak</h1>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#features" class="text-gray-700 hover:text-blue-600">Features</button>
+          <!-- <a href="#block" class="text-gray-700 hover:text-blue-600">Components</button> -->
+            <a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+            <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+      </nav>
+      <!-- <button onclick="openModal()"
+        class="hidden md:inline-block bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition">
+        Start Practice
+        </a>
+    </div> -->
+  </header>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 bg-gradient-to-br from-none-50 to-none-100">
+    <video class="absolute top-0 left-0 w-full h-full object-cover z-[-1]" autoplay muted loop>
+      <source src="Videocentric Minimalist Real Estate Virtual  Property Tour Facebook Video (3).mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in">
+        Speak English with Confidence
+      </h2>
+      <p class="text-xl text-white-700 max-w-2xl mx-auto mb-8">
+        Practice real-time pronunciation and speaking with our smart speech recognition tools. Designed for learners,
+        job seekers, and travelers.
+      </p>
+      <button onclick="openModal()"
+        class="bg-gray-600 hover:bg-white-700 text-white text-lg py-3 px-6 rounded-md transition duration-200">
+        Start Practicing Now
+        </a>
+    </div>
+  </section>
+  <!-- 🚀 Choose Practice Mode Section -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center text-white mb-12">Choose Your Practice Mode</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+
+      <!-- 📖 Story Practice -->
+      <div id="story-practice" class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2 flex items-center gap-2">
+          <span>📘</span> Story Practice
+        </h3>
+        <p class="text-gray-600 mb-4">Read fun stories aloud. Get feedback on every sentence to improve fluency and
+          pronunciation.</p>
+        <a href="story.html" class="inline-block bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700">Start
+          Stories</a>
+      </div>
+
+      <!-- 🎬 Movie Dialogues -->
+      <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2 flex items-center gap-2">
+          <span>🎬</span> Movie Dialogues
+        </h3>
+        <p class="text-gray-600 mb-4">Practice real movie scenes. Speak famous lines and get pronunciation feedback like
+          a coach.</p>
+        <a href="Movie Dialogues.html"
+          class="inline-block bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700">Practice Dialogue</a>
+      </div>
+
+      <!-- 🎭 Roleplay -->
+      <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition duration-300">
+        <h3 class="text-lg font-semibold text-gray-700 mb-2 flex items-center gap-2">
+          <span>🎭</span> Roleplay
+        </h3>
+        <p class="text-gray-600 mb-4">Choose a role in scenes and speak your part. Simulate real conversations with
+          voice feedback.</p>
+        <a href="roleplay.html" class="inline-block bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700">Play a
+          Role</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-center">
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-600 mb-2">🎙️ Voice Recognition</h3>
+        <p class="text-gray-600">Speak aloud and get instant feedback on your pronunciation using advanced speech
+          technology.</p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-600 mb-2">📊 Progress Tracking</h3>
+        <p class="text-gray-600">Track your improvement over time and get detailed feedback to keep improving.</p>
+      </div>
+      <div>
+        <h3 class="text-2xl font-semibold text-gray-600 mb-2">🌐 Anytime, Anywhere</h3>
+        <p class="text-gray-600">Access your practice sessions from any device with internet connection—mobile or
+          desktop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-100">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-gray-700 mb-4">Why SpeakBetter?</h3>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        We built SharpSpeak to help people from all backgrounds improve their spoken English with confidence. Whether
+        you're preparing for interviews, traveling, or just want to speak more fluently, this tool gives you smart,
+        guided, and interactive speaking practice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer id="contact" class="py-10 bg-gray-600 border-t">
+    <div class="max-w-6xl mx-auto px-6 text-center text-white-600">
+      <p>© 2025 SharpSpeak. All rights reserved.</p>
+      <p>Email: support@SharpSpeak.com</p>
+    </div>
+  </footer>
+
+  <!-- Simple Scroll Animation -->
+  <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s ease-out;
+    }
+  </style>
+
+
+  <!-- Modal Popup -->
+  <div id="practiceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-8 shadow-xl w-full max-w-md">
+      <h2 class="text-xl font-semibold mb-6 text-gray-800 text-center">What would you like to improve?</h2>
+      <div class="flex flex-col gap-4">
+        <button onclick="choosePractice('story')" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">📘
+          Reading Skill with Pronunciation</button>
+        <button onclick="choosePractice('speaking')"
+          class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">🗣️ English Speaking</button>
+        <button onclick="closeModal()" class="text-gray-500 hover:underline mt-4 text-sm">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    function openModal() {
+      document.getElementById('practiceModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('practiceModal').classList.add('hidden');
+    }
+
+    function choosePractice(option) {
+      closeModal();
+      if (option === 'story') {
+        const storyBlock = document.getElementById('story-practice');
+        storyBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        storyBlock.classList.add('highlight-effect');
+        setTimeout(() => {
+          storyBlock.classList.remove('highlight-effect');
+        }, 2000);
+      } else if (option === 'speaking') {
+        window.location.href = "Movie Dialogues.html";
+      }
+    }
+  </script>
+
+
+
+</body>
+
+</html>
