@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interactive Story Page</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    body {
+      font-family: 'Georgia', serif;
+    }
+    .story-paragraph {
+      margin-bottom: 1rem;
+      text-indent: 2em;
+    }
+    .story-img {
+      @apply my-4 w-full h-64 object-cover rounded;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+<!-- Hero Section -->
+<section class="text-white py-16 mb-10" style="background-image: url('Black and Grey Dark Forest Aesthetic Book Cover (1).jpg');">
+<div class="container mx-auto px-4 text-center">
+<h1 class="text-5xl font-bold mb-4">Welcome to the Storyverse</h1>
+<p class="text-xl">Explore magical tales, thrilling adventures, and heartwarming journeys</p>
+</div>
+</section>
+<div class="container mx-auto px-4">
+<h2 class="text-4xl font-bold text-center mb-6 text-gray-700">Interactive Story Library</h2>
+<!-- Story Cards with Toggle Content -->
+<div class="space-y-6" id="storyGrid">
+<!-- Cards will be inserted here -->
+</div>
+<!-- Interactive Form -->
+<div class="mt-10 bg-white p-6 rounded shadow-md">
+<h2 class="text-2xl font-semibold mb-4">What did you think of the story?</h2>
+<form onsubmit="submitFeedback(event)">
+<label class="block mb-2">Your Name:</label>
+<input class="w-full p-2 border mb-4 rounded" required="" type="text"/>
+<label class="block mb-2">Your Thoughts:</label>
+<textarea class="w-full p-2 border rounded mb-4" required=""></textarea>
+<button class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-blue-500" type="submit">Submit</button>
+</form>
+</div>
+</div>
+<script>
+    const stories = [
+      {
+        title: "The Brave Little Fox",
+        content: `Once upon a time in a deep forest, there lived a brave little fox named Felix. He wasn’t the biggest, fastest, or loudest animal in the woods, but everyone knew Felix for his cleverness and kind heart. Felix loved to explore the winding paths between the trees, always stopping to chat with the birds, rabbits, and squirrels. If anyone needed help, he was the first to offer a paw.
+
+One bright spring morning, as Felix trotted along the riverbank collecting wild berries, he heard a panicked cry echoing from downstream. It was soft, almost drowned out by the gurgling of the river. Felix’s ears perked up, and he darted through the underbrush toward the sound.
+
+To his surprise, he found a bear cub clinging to a slippery rock in the middle of the river. The current was strong, and the poor cub looked terrified. Felix didn’t waste a second. He ran to the edge of the water and called out, “Hold on! I’ll get help!”
+
+Felix sprinted through the forest, alerting the nearby animals. He found a team of beavers gnawing on a tree, a family of deer grazing in a meadow, and even a wise old owl perched high above. Together, they came up with a plan. The beavers quickly built a sturdy raft from branches and logs. The deer helped pull it to the river, and the owl flew overhead to guide them through the safest route.
+
+With Felix at the front, the animals pushed the raft into the river. Carefully, they navigated the choppy water, paddling toward the stranded cub. Felix spoke softly to the little bear, telling him not to be afraid. When they finally reached him, Felix reached out his paw and helped the cub onto the raft. The animals cheered as they guided it back to shore.
+
+The cub’s mother, who had been searching frantically, arrived just in time to see her baby safe and sound. She scooped him up and hugged him tightly, tears in her eyes. She turned to Felix and the others. “Thank you,” she said, her voice trembling. “You saved my child.”
+
+From that day forward, Felix was no longer just the helpful little fox. He became a hero in the eyes of the entire forest. Animals far and wide came to him for advice, knowing that his courage, quick thinking, and compassion made him someone they could always count on.
+
+And every spring, when the river ran high and the flowers bloomed, the animals would gather by the water and tell the tale of Felix—the brave little fox who reminded them that even the smallest among them could do the greatest things.`
+      },
+      {
+        title: "The Moon and the Cat",
+        content: `At night, Luna the cat would gaze at the moon and dream of visiting the stars. She lived in a quiet village, nestled between hills and rivers, where rooftops were her favorite playground. Every evening, after the humans turned off their lights and the world grew still, Luna would climb to the highest point of the tallest house and sit silently under the sky.
+
+She meowed softly, not for attention, but as if whispering her thoughts to the stars above. She imagined the moon was listening—that it understood her yearning for something greater than chimney tops and garden walls. The villagers often spoke of Luna as a peculiar cat, always staring at the heavens as if expecting an answer.
+
+One magical evening, as the air shimmered with the hush of twilight, Luna noticed something strange. A silver glow began to form in the sky, brighter than usual, and then the moonlight slowly bent downward. A staircase—made entirely of light—descended gently from the moon, resting just a paw’s reach from where she sat.
+
+With barely a pause, Luna placed one paw on the glowing step. To her surprise, it held her weight as gently as a breeze. Higher and higher she climbed, the rooftops fading into clouds, the stars blinking a little closer with each step. When she reached the moon, it wasn't cold or distant like she imagined. It was warm, like a lullaby sung by the night itself.
+
+The stars welcomed her with twinkles and laughter, swirling gently around as if they’d known her all along. Luna leapt and twirled, her paws skipping between constellations. She chased comets and rode moonbeams like ribbons of silk. Time seemed to pause in that celestial playground, where dreams and reality blended.
+
+Eventually, the moon whispered it was time to return. Luna descended the staircase of light, the stars waving farewell until the next night. When she touched the rooftop once more, dawn was breaking, and the staircase melted into the sky like a dream forgotten.
+
+But Luna never forgot.
+
+Each night after, the moonlight would shimmer just enough for her to climb again. The villagers sometimes saw her perched in the same place, her eyes brighter than any candle, her purr echoing like a secret melody in the dark. They didn’t know where she went, but they knew she was special.
+
+And so, Luna the cat became a legend. Some say if you watch closely on the clearest nights, you might see a glowing paw print on the moon—or hear a soft meow among the stars.`
+      },
+      {
+        title: "Timmy’s Talking Shoes",
+        content: `Timmy was an ordinary boy who loved to play outside and explore the neighborhood. But one day, something extraordinary happened—he found a pair of old shoes tucked away in his grandmother’s attic. They were dusty and worn, but when Timmy slipped them on, he heard a tiny voice say, “Hey there, Timmy! Ready for an adventure?”
+
+At first, Timmy thought he was imagining things. But the shoes kept talking, telling jokes, giving advice, and even cheering him on. “You’ve got this!” they’d say whenever he felt nervous. The shoes seemed to know exactly what he needed, and Timmy quickly realized they were magical.
+
+With the talking shoes on, Timmy felt braver. They helped him make new friends at school by suggesting things to say or games to play. One afternoon, as Timmy walked home, the shoes suddenly whispered, “Look! Someone needs our help!” He followed their guidance and found a lost puppy wandering near a busy street.
+
+The shoes told Timmy to stay calm and gently call the puppy. Step by step, they led Timmy safely across the road and to the puppy’s collar, where he found a tag with a phone number. Timmy’s heart filled with joy as he called the owner, who thanked him warmly for finding their beloved pet.
+
+That day, Timmy learned something special: with the right steps, you can always walk into an adventure. The shoes weren’t just magical—they were his new best friends, guiding him through the ups and downs of growing up.
+
+From then on, Timmy and his talking shoes explored parks, made new friends, and helped those in need. Sometimes, the shoes would even tell silly stories that made Timmy laugh so hard, he’d forget his worries entirely.
+
+And every night, before he went to sleep, Timmy would take off the shoes and whisper, “Thanks for the adventure. Can’t wait to see what’s next.”`
+      },
+{
+    title: "The Whispering Wind",
+    content: `In the quiet valley of Elden, the wind spoke to those who listened. It carried the soft rustling of the trees, the gentle murmur of the streams, and the distant songs of birds. Young Mira was one of the few who could truly hear its voice. She often sat by the edge of the cliffs, letting the breeze wrap around her as it whispered stories from faraway places.
+
+One crisp autumn morning, the wind’s whispers grew clearer, almost like a call meant only for her. It guided Mira to a forgotten path that twisted through the thick woods beyond the village. Curious and brave, she followed the invisible thread until she came upon a hidden glen bathed in golden sunlight.
+
+In this secret place, animals of every kind had gathered — foxes, rabbits, owls, and deer — all quietly sharing secrets and songs that only they knew. Mira felt no fear; instead, she felt honored and welcomed. The wind spoke again, telling her she had been chosen to be its storyteller, a bridge between the wild creatures and the people of Elden.
+
+From that day forward, Mira carried the tales of nature to the village below. She told of the bravery of the foxes, the wisdom of the owls, and the kindness of the deer. Her voice became a thread that tied humans and animals together in trust and friendship.
+
+Mira grew into a beloved figure, known as the voice of the valley. Through her stories, the villagers learned to listen — not just with their ears, but with their hearts. And they came to understand that even the wind, with its gentle whispers, had something precious to share.,
+        `
+    },
+{
+    title: "Leo and the Paper Planes",
+    content: `Leo loved making paper planes more than anything else in the world. His small desk was always covered with sheets of paper, some folded into sleek gliders, others into intricate dart shapes. Each plane had a name, a story, and a special mission. Leo imagined that one day, one of his planes would soar far beyond the hills that surrounded his quiet town.
+
+His classmates often teased him. “Why do you waste your time on paper planes?” they’d say. “They’ll never fly anywhere special.” But Leo just smiled and kept folding. To him, every crease was a promise, every plane a little hope.
+
+One chilly, blustery afternoon, with the sky streaked in silver clouds, Leo decided it was time to test his latest creation — a bright red plane he called “Scarlet Flyer.” It was the most perfect plane he had ever made, with sharp wings and a smooth body that glinted in the sunlight. He climbed to the very top of the school’s old clock tower, the highest spot he could find.
+
+The wind whipped around him as he stood there, his heart pounding with excitement. Taking a deep breath, Leo released Scarlet Flyer into the gust. The plane caught the wind just right and lifted into the air. It soared higher and higher, gliding over the rooftops, past the trees, and toward the distant hills.
+
+Leo watched with wide eyes as the little plane disappeared into the clouds, carried by the wind’s gentle hands. It was a moment he would never forget — the moment his dream felt real.
+
+Weeks later, Leo’s mailbox held a surprising letter. It was from a child in another country, writing to say they had found a bright red paper plane in a field near their home. The letter was filled with wonder and questions: “Who made this plane? What stories does it carry? Where did it come from?”
+
+Leo’s smile grew wider than ever. His dream had traveled across miles and borders, carried by the wind and touched by the hands of a new friend far away. Through his paper planes, he realized that even the smallest things could connect people in the biggest ways.
+
+And so, Leo continued to fold and dream, knowing that somewhere out there, another plane was waiting to carry his stories beyond the horizon.`
+    },
+{
+    title: `Leo loved making paper planes more than anything else in the world. His small desk was always covered with sheets of paper, some folded into sleek gliders, others into intricate dart shapes. Each plane had a name, a story, and a special mission. Leo imagined that one day, one of his planes would soar far beyond the hills that surrounded his quiet town.
+
+His classmates often teased him. “Why do you waste your time on paper planes?” they’d say. “They’ll never fly anywhere special.” But Leo just smiled and kept folding. To him, every crease was a promise, every plane a little hope.
+
+One chilly, blustery afternoon, with the sky streaked in silver clouds, Leo decided it was time to test his latest creation — a bright red plane he called “Scarlet Flyer.” It was the most perfect plane he had ever made, with sharp wings and a smooth body that glinted in the sunlight. He climbed to the very top of the school’s old clock tower, the highest spot he could find.
+
+The wind whipped around him as he stood there, his heart pounding with excitement. Taking a deep breath, Leo released Scarlet Flyer into the gust. The plane caught the wind just right and lifted into the air. It soared higher and higher, gliding over the rooftops, past the trees, and toward the distant hills.
+
+Leo watched with wide eyes as the little plane disappeared into the clouds, carried by the wind’s gentle hands. It was a moment he would never forget — the moment his dream felt real.
+
+Weeks later, Leo’s mailbox held a surprising letter. It was from a child in another country, writing to say they had found a bright red paper plane in a field near their home. The letter was filled with wonder and questions: “Who made this plane? What stories does it carry? Where did it come from?”
+
+Leo’s smile grew wider than ever. His dream had traveled across miles and borders, carried by the wind and touched by the hands of a new friend far away. Through his paper planes, he realized that even the smallest things could connect people in the biggest ways.
+
+And so, Leo continued to fold and dream, knowing that somewhere out there, another plane was waiting to carry his stories beyond the horizon.`
+    },
+{
+    title:"Marvin and the Moon Mail",
+    content:`Marvin was the only mailman in the village of Starlit Hollow, a small, cozy place nestled between rolling hills and whispering forests. But Marvin had a secret—besides delivering letters to every doorstep, he was the village’s special messenger to the moon.
+
+Every full moon, villagers would gather in the town square, their faces glowing under the soft silver light. They brought with them letters written on delicate parchment, filled with their deepest hopes, dreams, and sometimes fears. Children wrote wishes for new toys and adventures, while adults penned prayers for health, love, and peace.
+
+One chilly evening, little Elsie tugged at Marvin’s coat. “Will you send my letter to the moon, Mr. Marvin? I want the stars to hear my wish.”
+
+Marvin smiled kindly, kneeling to her eye level. “I promise, Elsie. The moon listens to every word.”
+
+With care, Marvin gathered the letters and tucked them into his satchel. He headed toward Star Peak, the tallest hill in the village, where the wind was always just right. At the summit, he unpacked his special kite — woven from silver threads gifted by the village elder and shimmering softly in the moonlight.
+
+“Ready for your journey,” Marvin whispered to the kite as he tied the letters to its frame.
+
+The kite soared as Marvin released it into the night, the wind catching it perfectly and carrying it higher and higher until it disappeared into the glowing moonbeam.
+
+But this night was different.
+
+As Marvin prepared to head home, he felt a soft flutter inside his satchel. Reaching in, he found a small letter, glowing with silver dust. Carefully, he unrolled it, watching the sparkling words appear:
+
+Thank you for the messages. We hear your hopes and send our light in return.
+
+The next morning, Marvin showed the letter to the villagers. Excitement filled the air as they realized the moon truly listened.
+
+From then on, moon replies came regularly. For birthdays, the letters sparkled with joy. At weddings, they shimmered with blessings. And in moments of sorrow, they glowed softly, offering comfort and hope.
+
+One evening, the village elder said, “Marvin, you carry more than letters. You carry the heart of Starlit Hollow to the stars.”
+
+Marvin smiled beneath his lantern’s warm glow. “And the moon brings its light back to us.”
+
+Children dreamed of helping Marvin someday, and villagers whispered stories of his magical night journeys. Through his quiet work, Marvin reminded everyone that hope could reach beyond the stars — and sometimes, even the moon could be a friend.`
+    },
+{
+    title: "Nia and the Clockmaker’s Secret",
+    content: `In the heart of the town stood an ancient clock tower, its hands always perfectly on time. The tower’s chimes rang out every hour, a comforting rhythm that marked the lives of everyone below. No one knew exactly how it stayed so precise, but it had never missed a beat in over a hundred years.
+
+Nia, a curious and bright apprentice, worked alongside the old clockmaker, Mr. Thorne. He was a quiet man, rarely speaking and never leaving the tower. Nia admired him and was eager to learn the secrets of the great clock, though the old man guarded his knowledge closely.
+
+One stormy evening, as thunder roared and lightning split the sky, a fierce bolt struck the clock tower. The great clock’s hands froze—silent and still for the first time in a century. The town fell into an uneasy hush, feeling as if time itself had paused.
+
+Determined, Nia ventured into the tower’s shadowed interior. The usual hum of ticking was gone, replaced by a deep silence. She climbed the narrow spiral stairs until she reached a hidden door she had never seen before. With trembling hands, she pushed it open.
+
+Inside was a secret room filled with countless gears and cogs, shimmering faintly with a strange glow. But these weren’t ordinary gears — they sparkled with stardust and seemed alive, as if powered by memories rather than mechanics. The air was thick with whispers of voices and laughter, like echoes trapped inside the very heart of the clock.
+
+Suddenly, Mr. Thorne appeared behind her. “This tower doesn’t just track time,” he said softly. “It preserves the stories of every moment, every tick holds a memory from lives long past.”
+
+He explained how the clock’s magic worked — each rotation carried fragments of joy, sorrow, love, and hope. It was a living archive of the town’s spirit, a keeper of history woven through seconds and minutes.
+
+Nia listened closely as the clock began to stir again. As the gears turned, she heard the whispers grow louder — stories of old lovers meeting beneath the tower, children’s laughter echoing through the square, celebrations, and quiet tears.
+
+From that day forward, Nia understood the true power of time. She vowed to protect the clock and continue Mr. Thorne’s legacy, not just as a keeper of hours but as a guardian of the town’s memories.
+
+The clock never missed a beat again, and Nia became known as the keeper of time and tales, forever listening to the stories the ancient clock whispered on the wind.`
+    }
+    ];
+
+    function renderStories() {
+      const storyGrid = document.getElementById('storyGrid');
+      stories.forEach((story, index) => {
+        const storyCard = document.createElement('div');
+        storyCard.className = "bg-white shadow-md rounded p-4 border border-gray-200";
+
+        storyCard.innerHTML = `
+          <button class="w-full text-left" onclick="toggleStory('story-${index}')">
+            <h2 class="text-2xl font-bold text-gray-700 mb-2">${index + 1}. ${story.title}</h2>
+            <p class="text-sm text-gray-500">Click to read more</p>
+          </button>
+          <div id="story-${index}" class="mt-4 hidden">
+         
+
+            ${story.content.split("\n\n").map(p => `<p class='story-paragraph'>${p}</p>`).join('')}
+          </div>
+        `;
+
+        storyGrid.appendChild(storyCard);
+      });
+    }
+
+    function toggleStory(id) {
+      const contentDiv = document.getElementById(id);
+      if (contentDiv.classList.contains('hidden')) {
+        contentDiv.classList.remove('hidden');
+      } else {
+        contentDiv.classList.add('hidden');
+      }
+    }
+
+    function submitFeedback(event) {
+      event.preventDefault();
+      alert("Thanks for your feedback!");
+      event.target.reset();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderStories);
+  </script>
+</body>
+</html>
