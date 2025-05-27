@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Roleplay Practice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-200 font-sans">
+  <div class="max-w-2xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center mb-6">🎭 English Speaking Roleplay</h1>
+
+    <!-- Scenario Selector -->
+    <div class="mb-4">
+      <label class="block text-lg font-semibold mb-2">Choose a Scenario:</label>
+      <select id="scenarioSelect" class="w-full p-2 border rounded" onchange="updateRoles()">
+        <option value="restaurant">🍽️ At a Restaurant</option>
+        <option value="interview">💼 Job Interview</option>
+        <option value="doctor">🏥 At the Doctor's Office</option>
+        <option value="store">🛍️ Shopping at a Store</option>
+      </select>
+    </div>
+
+    <!-- Role Selector -->
+    <div class="mb-4">
+      <label class="block text-lg font-semibold mb-2">Choose Your Role:</label>
+      <select id="roleSelect" class="w-full p-2 border rounded"></select>
+    </div>
+
+    <!-- Conversation Area -->
+    <div id="conversation" class="bg-white rounded shadow p-4 h-64 overflow-y-auto mb-4">
+      <p class="text-gray-500">Start the conversation by clicking "Start Roleplay"</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex justify-between">
+      <button onclick="startConversation()" class="bg-gray-600 text-white px-4 py-2 rounded">Start Roleplay</button>
+      <button onclick="resetConversation()" class="bg-gray-500 text-white px-4 py-2 rounded">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    const scenarios = {
+      restaurant: {
+        roles: ["waiter", "customer"],
+        waiter: [
+          "Hello, welcome to our restaurant! Can I take your order?",
+          "Would you like something to drink?",
+          "Your food will be ready shortly."
+        ],
+        customer: [
+          ["Hi, I’d like a cheeseburger and fries.", "I want a cheeseburger and fries, please."],
+          ["Yes, a glass of water, please.", "I'll just have some water."],
+          ["Thank you!", "Thanks a lot!"]
+        ]
+      },
+      interview: {
+        roles: ["interviewer", "candidate"],
+        interviewer: [
+          "Tell me about yourself.",
+          "Why do you want this job?",
+          "Do you have any questions for us?"
+        ],
+        candidate: [
+          ["I'm a recent graduate with a passion for technology.", "I just graduated and I love working with tech."],
+          ["Because I believe I can contribute to your company’s growth.", "I think my skills match your company’s goals."],
+          ["Yes, could you tell me more about the team?", "Can you explain more about the team I'd work with?"]
+        ]
+      },
+      doctor: {
+        roles: ["doctor", "patient"],
+        doctor: [
+          "What brings you in today?",
+          "How long have you been feeling this way?",
+          "I'll prescribe you some medication."
+        ],
+        patient: [
+          ["I've been having a sore throat and a headache.", "My throat hurts and I also have a headache."],
+          ["It's been about three days now.", "I’ve felt like this for the past three days."],
+          ["Thank you, doctor.", "Thanks for your help."]
+        ]
+      },
+      store: {
+        roles: ["clerk", "customer"],
+        clerk: [
+          "Hi there, can I help you find something?",
+          "This shirt is available in several sizes.",
+          "Would you like to pay by card or cash?"
+        ],
+        customer: [
+          ["Yes, I’m looking for a blue shirt.", "I need a blue shirt, please."],
+          ["Do you have it in medium?", "Can I get a medium size?"],
+          ["I’ll pay with my card.", "Card, please."]
+        ]
+      }
+    };
+
+    function updateRoles() {
+      const scenario = document.getElementById("scenarioSelect").value;
+      const roleSelect = document.getElementById("roleSelect");
+      roleSelect.innerHTML = "";
+      scenarios[scenario].roles.forEach(role => {
+        const option = document.createElement("option");
+        option.value = role;
+        option.textContent = role.charAt(0).toUpperCase() + role.slice(1);
+        roleSelect.appendChild(option);
+      });
+    }
+
+    window.onload = updateRoles;
+  </script>
+
+  <!-- Live Conversation Script -->
+  <script>
+    let currentIndex = 0;
+    let currentScenario, userRole, aiRole;
+    let conversationData = [];
+
+    const conversationBox = document.getElementById("conversation");
+
+    function startConversation() {
+      currentIndex = 0;
+      conversationBox.innerHTML = "";
+      currentScenario = document.getElementById("scenarioSelect").value;
+      userRole = document.getElementById("roleSelect").value;
+      aiRole = scenarios[currentScenario].roles.find(r => r !== userRole);
+      conversationData = scenarios[currentScenario][aiRole].map((line, i) => ({
+        ai: line,
+        userOptions: scenarios[currentScenario][userRole][i]
+      }));
+      runNextTurn();
+    }
+
+    function runNextTurn() {
+      if (currentIndex >= conversationData.length) {
+        appendLine("System", "🎉 Conversation finished!");
+        return;
+      }
+
+      const turn = conversationData[currentIndex];
+
+      // AI line
+      appendLine(aiRole, turn.ai);
+      speak(turn.ai, () => {
+        // Then wait for user response
+        listenUser(turn.userOptions);
+      });
+    }
+
+    function speak(text, callback) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.onend = callback;
+      speechSynthesis.speak(utterance);
+    }
+
+    function listenUser(expectedResponses) {
+      appendLine(userRole, "<em>(Listening...)</em>");
+
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        document.querySelectorAll(`#conversation p:last-child`).forEach(p => p.innerHTML = `<strong>${userRole}:</strong> ${transcript}`);
+        const matched = expectedResponses.some(resp => transcript.toLowerCase().includes(resp.toLowerCase()));
+        if (matched) {
+          appendLine("System", "✅ Good response!");
+        } else {
+          appendLine("System", "❌ Try to be closer to the expected phrase.");
+        }
+        currentIndex++;
+        setTimeout(runNextTurn, 1500);
+      };
+
+      recognition.onerror = function() {
+        appendLine("System", "⚠️ Sorry, I couldn't hear you. Let's try the next one.");
+        currentIndex++;
+        setTimeout(runNextTurn, 1500);
+      };
+
+      recognition.start();
+    }
+
+    function appendLine(speaker, text) {
+      const p = document.createElement("p");
+      p.innerHTML = `<strong>${speaker}:</strong> ${text}`;
+      conversationBox.appendChild(p);
+      conversationBox.scrollTop = conversationBox.scrollHeight;
+    }
+
+    function resetConversation() {
+      conversationBox.innerHTML = `<p class="text-gray-500">Start the conversation by clicking "Start Roleplay"</p>`;
+      currentIndex = 0;
+    }
+  </script>
+</body>
+</html>
